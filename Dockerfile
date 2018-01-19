@@ -45,4 +45,4 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 EXPOSE 6379
-CMD ["redis-server"]
+CMD ["start"]
