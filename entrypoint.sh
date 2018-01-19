@@ -6,7 +6,7 @@ REDIS_VERSION=4.0.6
 if [[ $1 == 'start' ]]; then
 
         sed 's/daemonize yes/daemonize no/g' -i $REDIS_CONF
-        sed 's/bind 127.0.0.1/bind 0.0.0./g' -i $REDIS_CONF
+        sed 's/bind 127.0.0.1/bind 0.0.0.0/g' -i $REDIS_CONF
 	sed 's/appendonly no/appendonly yes/g' -i $REDIS_CONF
 
 	for file in `ls /etc/redis/conf.d/`;
