@@ -7,7 +7,9 @@ RUN groupadd -r redis && useradd -r -g redis redis
 
 # grab gosu for easy step-down from root
 # https://github.com/tianon/gosu/releases
+
 ENV REDIS_VERSION 4.0.6
+ENV REDIS_VERSION_MINOR 1chl1~xenial1
 ENV GOSU_VERSION 1.10
 RUN set -ex; \
 	\
@@ -33,7 +35,9 @@ RUN apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 136221EE52
 
 RUN echo "deb http://ppa.launchpad.net/chris-lea/redis-server/ubuntu xenial main" > /etc/apt/sources.list.d/redis.list && \
     apt-get -y update && \
-    apt-get -y install redis-server redis-sentinel redis-tools && \
+    apt-get -y install redis-server=4:${REDIS_VERSION}-${REDIS_VERSION_MINOR} \
+	redis-sentinel=4:${REDIS_VERSION}-${REDIS_VERSION_MINOR} \
+	redis-tools=4:${REDIS_VERSION}-${REDIS_VERSION_MINOR} && \
     rm -rf /var/lib/apt/list/*
 
 RUN mkdir -p /etc/redis/conf.d/
